@@ -129,7 +129,7 @@ pub fn run_next_app() -> ! {
 			KERNEL_STACK.push_context(
 				TrapContext::app_init_context(
 					APP_BASE_ADDRESS,
-					USER_STACK.get_sp()
+					USER_STACK.get_sp() - 16
 				)
 			)as *const _ as usize
 		);

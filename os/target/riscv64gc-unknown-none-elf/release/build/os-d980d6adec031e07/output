@@ -1,0 +1,4 @@
+cargo:rerun-if-changed=../user/src/
+cargo:rerun-if-changed=../user/build/bin/
+app_0: test1_write0
+app_1: test1_write1
