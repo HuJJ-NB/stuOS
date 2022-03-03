@@ -24,13 +24,6 @@ macro_rules! user_print {
 }
 
 #[macro_export]
-macro_rules! printk {
-	($fmt: literal $(, $($arg: tt)+)?) => {
-		$crate::console::print(format_args!(concat!("[KERN]", $fmt, "\n") $(, $($arg)+)?));
-	}
-}
-
-#[macro_export]
 macro_rules! error {
 	($fmt: literal $(, $($arg: tt)+)?) => {
 		$crate::console::print(format_args!(concat!("\x1b[31m[ERROR]", $fmt, "\x1b[0m\n") $(, $($arg)+)?));
@@ -47,20 +40,24 @@ macro_rules! warn {
 #[macro_export]
 macro_rules! info {
 	($fmt: literal $(, $($arg: tt)+)?) => {
-		$crate::console::print(format_args!(concat!("\x1b[34m[INFO]", $fmt, "\x1b[0m\n") $(, $($arg)+)?));
+			$crate::console::print(format_args!(concat!("\x1b[34m[INFO]", $fmt, "\x1b[0m\n") $(, $($arg)+)?));
 	}
 }
 
 #[macro_export]
 macro_rules! debug {
 	($fmt: literal $(, $($arg: tt)+)?) => {
-		$crate::console::print(format_args!(concat!("\x1b[32m[DEBUG]", $fmt, "\x1b[0m\n") $(, $($arg)+)?));
+		if cfg!(feature = "LOG_DEBUG"){
+			$crate::console::print(format_args!(concat!("\x1b[32m[DEBUG]", $fmt, "\x1b[0m\n") $(, $($arg)+)?));
+		}
 	}
 }
 
 #[macro_export]
 macro_rules! trace {
 	($fmt: literal $(, $($arg: tt)+)?) => {
-		$crate::console::print(format_args!(concat!("\x1b[90m[TRACE]", $fmt, "\x1b[0m\n") $(, $($arg)+)?));
+		if cfg!(feature = "LOG_DEBUG") {
+			$crate::console::print(format_args!(concat!("\x1b[90m[TRACE]", $fmt, "\x1b[0m\n") $(, $($arg)+)?));
+		}
 	}
 }
