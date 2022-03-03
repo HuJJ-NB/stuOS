@@ -49,7 +49,7 @@ struct AppManager {
 
 impl AppManager {
 	pub fn print_app_info(&self) {
-		info!("num_app = {}", self.num_app);
+		info!("{} apps is Loaded.", self.num_app);
 		for i in 0..self.num_app {
 			trace!(
 				"app_{} [{:#x}, {:#x}]",
@@ -104,8 +104,10 @@ lazy_static! {
 	})};
 }
 
-pub fn init() {
-    print_app_info();
+pub fn init() -> ! {
+	print_app_info();
+	info!("Going to launch frist app.");
+        run_next_app();
 }
 
 pub fn print_app_info() {
