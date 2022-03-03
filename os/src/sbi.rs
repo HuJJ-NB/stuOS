@@ -32,7 +32,7 @@ pub fn console_putchar(c: usize) {
 }
 
 pub fn shutdown() -> ! {
-	debug!("RuianOS is going to shutdown.");
+	debug!("Operation System is going to shutdown.");
 	sbi_call(SBI_SHUTDOWN, 0, 0, 0);
 	panic!("It should shutdown,but hasen't!");
 }
