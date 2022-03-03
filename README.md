@@ -10,19 +10,19 @@
 
 ## 安装运行
 
-参考rCore文档，https://github.com/rcore-os/rCore-Tutorial-v3。
+* 工具安装请参考rCore文档，https://github.com/rcore-os/rCore-Tutorial-v3。
+* 在项目根目录或者`os`目录下`make run`以运行本项目。
+* 根目录下`make run-log`或者`make run FLAGS=--features\ LOG_DEBUG`开启一些调试信息的输出，后者也可以在`os`目录中使用。
 
 ## 工作进展
 
 ### 已完成
 
 * [x] 基本开发
-
 * [x] 系统调用安全性处理。
+* [x] 根据make选项，实现DEBUG之下级别的内核信息是否输出的选择。
 
 ### 未完成
-
-* [ ] 根据make选项，实现DEBUG之下级别的内核信息是否输出的选择。
 
 * [ ] **实现一个裸机应用程序A，能打印调用栈。**
 

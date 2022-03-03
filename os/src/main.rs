@@ -39,21 +39,19 @@ fn print_message() {
 		fn sbss();
 		fn ebss();
 	}
-	printk!("Hello, World!");
-	info!(".text [{:#x}, {:#x})", stext as usize, etext as usize);
-	info!(".rodata [{:#x}, {:#x})", srodata as usize, erodata as usize);
-	info!(".data [{:#x}, {:#x})", sdata as usize, edata as usize);
-	info!(".bss [{:#x}, {:#x})", sbss as usize, ebss as usize);
-	warn!("It's just a simple os");
-	trace!("thanks");	
+	info!("Operation System is Loaded!");
+	trace!(".text [{:#x}, {:#x})", stext as usize, etext as usize);
+	trace!(".rodata [{:#x}, {:#x})", srodata as usize, erodata as usize);
+	trace!(".data [{:#x}, {:#x})", sdata as usize, edata as usize);
+	trace!(".bss [{:#x}, {:#x})", sbss as usize, ebss as usize);
 }
 
 #[no_mangle]
 pub fn rust_init_entry() -> ! {
 	bss_clear();
 	print_message();
-	batch::init();
 	trap::init();
-	batch::run_next_app();
+	batch::init();
+//	batch::run_next_app();
 }
 

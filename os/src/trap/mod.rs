@@ -18,6 +18,7 @@ pub fn init() {
     unsafe {
         stvec::write(__alltraps as usize, TrapMode::Direct);
     }
+	info!("Get ready fo all Traps from U-MODE to S_MMODE.");
 }
 
 #[no_mangle]
@@ -31,7 +32,6 @@ pub fn trap_handler(cx: &mut TrapContext) -> &mut TrapContext {
 			trace!("syscall-num: {}", cx.x[17]);
 			trace!("top of user_stack: {:x}", cx.x[2]);
 			trace!("eage of user_stack: {:x} to {:x}", (cx.x[2] - 1) & (!(0x1000 - 1)), (cx.x[2] + 0x1000 - 1) & (!(0x1000 - 1)));
-			debug!("Information finished.");
 			cx.sepc += 4;
 			cx.x[10] = syscall(cx.x[17], [cx.x[10], cx.x[11], cx.x[12]], cx.x[2]) as usize;
 		}

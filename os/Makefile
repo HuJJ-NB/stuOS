@@ -65,7 +65,7 @@ $(KERNEL_BIN): $(KERNEL_ELF)
 $(KERNEL_ELF): app-bin $(LINKER)
 	@echo --build ruianOS.
 	@echo ----Platform: $(BOARD)
-	@cargo build --release
+	cargo build --release $(FLAGS)
 	@rm $(LINKED_APP_BINS)
 
 $(LINKER): $(LINKER_SRC_PATH)/linker-head-$(BOARD).ld $(LINKER_SRC_PATH)/linker-body.ld
