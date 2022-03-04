@@ -1,9 +1,9 @@
 #![no_std]
 #![no_main]
 
-#[macro_use]
-extern crate base_lib;
-
+//#[macro_use]
+//extern crate base_lib;
+use base_lib::*;
 // 正确输出：
 // 3^10000=5079(MOD 10007)
 // 3^20000=8202(MOD 10007)
@@ -27,6 +27,7 @@ fn main() -> i32 {
     let mut pow = [0u32; SIZE];
     let mut index: usize = 0;
     pow[index] = 1;
+println!("{}", sys_count(64 as usize));
     for i in 1..=STEP {
         let last = pow[index];
         index = (index + 1) % SIZE;
@@ -35,6 +36,7 @@ fn main() -> i32 {
             println!("{}^{}={}(MOD {})", P, i, pow[index], MOD);
         }
     }
+	println!("{}", sys_count(64 as usize));
     println!("Test power OK!");
     0
 }
