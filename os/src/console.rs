@@ -47,7 +47,7 @@ macro_rules! info {
 #[macro_export]
 macro_rules! debug {
 	($fmt: literal $(, $($arg: tt)+)?) => {
-		if cfg!(feature = "LOG_DEBUG"){
+		if cfg!(feature = "LOG"){
 			$crate::console::print(format_args!(concat!("\x1b[32m[DEBUG]", $fmt, "\x1b[0m\n") $(, $($arg)+)?));
 		}
 	}
@@ -56,7 +56,7 @@ macro_rules! debug {
 #[macro_export]
 macro_rules! trace {
 	($fmt: literal $(, $($arg: tt)+)?) => {
-		if cfg!(feature = "LOG_DEBUG") {
+		if cfg!(feature = "LOG") {
 			$crate::console::print(format_args!(concat!("\x1b[90m[TRACE]", $fmt, "\x1b[0m\n") $(, $($arg)+)?));
 		}
 	}
