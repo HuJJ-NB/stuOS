@@ -14,7 +14,7 @@
 
 * 在项目根目录或者`os`目录下`make run`以运行本项目。
 
-* 根目录下`make run-log`或者`make run FLAGS=--features\ LOG_DEBUG`开启一些调试信息的输出，后者也可以在`os`目录中使用。
+* 根目录下`make run-log`或者`make run FLAGS=--features\ LOG`开启一些调试信息的输出，后者也可以在`os`目录中使用。
 
 ## 工作进展
 

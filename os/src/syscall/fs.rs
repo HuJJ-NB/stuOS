@@ -6,7 +6,10 @@ pub fn sys_write(fd: usize, buf: *const u8, len: usize, user_sp: usize) -> isize
 			FD_STDOUT => {
 				let slice = unsafe { core::slice::from_raw_parts(buf, len) };
 				let str = core::str::from_utf8(slice).unwrap();
+				#[cfg(not(feature = "LOG"))]
 				crate::console::print(format_args!("{}", str));
+				#[cfg(feature = "LOG")]
+				crate::console::print(format_args!("{}\n", str));
 				len as isize
 			}
 			_ => {
@@ -20,7 +23,6 @@ pub fn sys_write(fd: usize, buf: *const u8, len: usize, user_sp: usize) -> isize
 		error!("access violation at address 0x{:x}!", buf as usize);
 		trace!("user call for print {} Bytes, from {:x}.", len, buf as usize);
 		trace!("edge of user stack: {:x} -> {:x}.", (user_sp - 1) & (!(0x1000 - 1)), (user_sp + 0x1000 - 1) & (!(0x1000 - 1)));
-		error!("Information finished.");
 		-1 as isize
 	}
 }
