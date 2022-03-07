@@ -1,7 +1,8 @@
 use core::arch::asm;
-const SYSCALL_COUNT: usize = 0;
+const SYSCALL_GETSYSCALLINFO: usize = 0;
 const SYSCALL_WRITE: usize = 64;
 const SYSCALL_EXIT: usize = 93;
+const SYSCALL_GETTASKINFO: usize = 94;
 
 fn syscall(id: usize, args: [usize; 3]) -> isize {
 	let mut ret: isize;
@@ -17,8 +18,8 @@ fn syscall(id: usize, args: [usize; 3]) -> isize {
 	ret
 }
 
-pub fn sys_count(syscall_id: usize) -> isize {
-	syscall(SYSCALL_COUNT, [syscall_id, 0, 0])
+pub fn sys_get_syscallinfo(syscall_id: usize) -> isize {
+	syscall(SYSCALL_GETSYSCALLINFO, [syscall_id, 0, 0])
 }
 
 pub fn sys_write(fd: usize, buffer: &[u8]) -> isize {
@@ -27,4 +28,8 @@ pub fn sys_write(fd: usize, buffer: &[u8]) -> isize {
 
 pub fn sys_exit(exit_code: i32) -> isize {
 	syscall(SYSCALL_EXIT, [exit_code as usize, 0, 0])
+}
+
+pub fn sys_get_taskinfo() -> isize {
+	syscall(SYSCALL_GETTASKINFO, [0, 0, 0])
 }
