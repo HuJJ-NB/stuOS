@@ -27,7 +27,7 @@ fn main() -> i32 {
     let mut pow = [0u32; SIZE];
     let mut index: usize = 0;
     pow[index] = 1;
-println!("{}", sys_count(64 as usize));
+println!("{}", get_syscallinfo(64 as usize));
     for i in 1..=STEP {
         let last = pow[index];
         index = (index + 1) % SIZE;
@@ -36,7 +36,7 @@ println!("{}", sys_count(64 as usize));
             println!("{}^{}={}(MOD {})", P, i, pow[index], MOD);
         }
     }
-	println!("{}", sys_count(64 as usize));
+	println!("{}", get_syscallinfo(64 as usize));
     println!("Test power OK!");
     0
 }

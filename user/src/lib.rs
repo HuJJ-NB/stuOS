@@ -40,3 +40,9 @@ pub fn write(fd: usize, buf: &[u8]) -> isize {
 pub fn exit(exit_code: i32) -> isize {
 	sys_exit(exit_code)
 }
+pub fn get_taskinfo() -> isize {
+	sys_get_taskinfo()
+}
+pub fn get_syscallinfo(syscall_id: usize) -> isize{
+	sys_get_syscallinfo(syscall_id)
+}
